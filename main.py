@@ -120,17 +120,17 @@ def main(user_query: str):
                                         )
     scoring_agent.register_for_execution(name="calculate_overall_score")(calculate_overall_score)
     
-    task1=f""" The client asked {user_query}. 
-    The task is to fetch restaurant data and return all the reviews for the restaurant in an enumerated list. 
+    data_fetch_task=f""" The client asked {user_query}. 
+    The task is to fetch restaurant data and return all the reviews for the restaurant. 
     Make sure you fix the restaurant name if there are any spelling erros but don't add any words.
-    Keep trying until you find the reviews. When you are done, reply DONE."""
+    Keep trying until you find the reviews."""
  
 
     entrypoint_agent.initiate_chats(
     [
         {
             "recipient": data_fetch_agent,
-            "message": task1,
+            "message": data_fetch_task,
             "max_turns":2,
             "summary_method": "last_msg"
         },
@@ -143,8 +143,9 @@ def main(user_query: str):
             {
             "recipient": scoring_agent,
             "message": f"Build the correct lists of `food_scores` and `customer_service_scores` from the reviews. Use the `calculate_overall_score` tool.",
-            "max_turns": 2,
+            "max_turns": 3,
             "summary_method": "reflection_with_llm",
+            "summary_prompt": f"Answer the customer query: {user_query}."
         },
     ]
 )
