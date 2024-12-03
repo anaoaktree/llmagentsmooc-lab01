@@ -3,8 +3,6 @@ from autogen import ConversableAgent
 import sys
 import os
 import math
-import math
-
 
 def fetch_restaurant_data(restaurant_name: str) -> Dict[str, List[str]]:
     """
