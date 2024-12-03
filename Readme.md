@@ -2,37 +2,15 @@
 
 ## Overview
 
-This project uses the **AutoGen Framework** and **LLMs** to analyze unstructured restaurant reviews. The goal is to provide scores for food quality and customer service based on keywords in reviews and calculate an overall score for a given restaurant.
+This project uses the **AutoGen Framework** and **LLMs** to analyze unstructured restaurant reviews. The goal is to provide scores for food quality and customer service based on keywords in reviews and calculate an overall score for a given restaurant. More information in Instructions.md.
 This is a solution to lab01 from the [LLM Agents MOOC](https://llmagents-learning.org/f24)
-
-### Key Features
-1. **Data Fetching**:
-   - Extracts reviews for a specific restaurant from the dataset `restaurant-data.txt`.
-
-2. **Review Analysis**:
-   - Identifies keywords in reviews to assign:
-     - A `food_score` (1–5).
-     - A `customer_service_score` (1–5).
-
-3. **Score Calculation**:
-   - Aggregates scores using a geometric mean formula to produce an overall rating (0–10).
-
-4. **AutoGen Framework**:
-   - Implements multi-agent communication for:
-     - Fetching relevant reviews.
-     - Analyzing reviews.
-     - Computing final scores.
-
-### Dataset
-- Reviews are stored in `restaurant-data.txt`, where each line is formatted as:
-<restaurant_name>. <review>
 
 ---
 
 ## How It Works
 
 1. **Fetch Restaurant Data**:
- - The `fetch_restaurant_data` function retrieves all reviews for the queried restaurant.
+ - The `fetch_restaurant_data` function retrieves all reviews for the queried restaurant from `restaurant-data.txt`.
  
 2. **Analyze Reviews**:
  - The `review_analysis_agent` identifies keywords to generate `food_score` and `customer_service_score` for each review.
